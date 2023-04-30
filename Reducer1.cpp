@@ -7,6 +7,7 @@ namespace fs = std::filesystem;
 //reading all teh files from teh temp dir and reduce them to one
 Reducer1::Reducer1(const std::string& temp_dir) : temp_dir_(temp_dir) {}
 
+
 std::unordered_map<std::string, int> Reducer1::reduce() {
     std::unordered_map<std::string, int> word_counts;
 
@@ -39,4 +40,16 @@ std::unordered_map<std::string, int> Reducer1::reduce() {
 
     //all the files sumarized values
     return word_counts;
+}
+
+
+MapResult reduceWrapper(const std::string& temp_dir) {
+    std::unordered_map<std::string, int> word_counts;
+
+    MapResult result;
+    Reducer1 reducer(temp_dir);
+       word_counts = reducer.reduce();
+       result.word_counts = word_counts;
+
+    return result;
 }

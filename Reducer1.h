@@ -13,7 +13,12 @@
 #include <filesystem>
 #include <algorithm> // for std::sort
 
+struct MapResult
+{
+    std::unordered_map<std::string, int> word_counts;
+};
 
+extern "C" { REDUCER1_API  MapResult reduceWrapper(const std::string& temp_dir); }
 
 
 class REDUCER1_API  Reducer1 {
